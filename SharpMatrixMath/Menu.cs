@@ -61,7 +61,8 @@ namespace SharpMatrixMath
 
                 //Update selectedIndex
                 if (keyPressed == ConsoleKey.UpArrow) SelectedIndex--;
-                else if (keyPressed == ConsoleKey.DownArrow) SelectedIndex++;
+                else if (keyPressed == ConsoleKey.DownArrow
+                    || keyPressed == ConsoleKey.Tab) SelectedIndex++;
 
                 if (SelectedIndex < 0) SelectedIndex = Options.Length - 1;
                 else if (SelectedIndex == Options.Length) SelectedIndex = 0;
