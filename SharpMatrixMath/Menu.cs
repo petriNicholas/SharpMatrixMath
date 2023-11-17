@@ -12,7 +12,7 @@ namespace SharpMatrixMath
     {
         private int SelectedIndex;
         private readonly string[] Options;
-        private string Prompt;
+        private readonly string Prompt;
         
         public Menu(string prompt, string[] options)
         {
