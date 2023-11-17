@@ -30,7 +30,7 @@ namespace SharpMatrixMath
 
             Menu mainMenu = new Menu(prompt, options);
 
-            int selectedIndex = mainMenu.Run();
+            int selectedIndex = mainMenu.Run(1);
 
             switch(selectedIndex)
             {

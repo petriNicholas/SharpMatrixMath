@@ -21,25 +21,24 @@ namespace SharpMatrixMath
             SelectedIndex = 0;
         }
 
-        private void DisplayOptions()
+        private void DisplayOptionsVertically()
         {
             Console.WriteLine(Prompt);
             for (int i = 0; i < Options.Length; i++) 
             { 
                 string currentOption = Options[i];
-                string prefix , postfix;
+                string prefix , postfix="";
 
                 if (SelectedIndex == i) 
                 {
-                    prefix = ">>";
-                    postfix = "<<";
+                    prefix = "*";
+                    postfix = "*";
                     Console.ForegroundColor = ConsoleColor.Black;
                     Console.BackgroundColor = ConsoleColor.White;
                 }
                 else
                 {
-                    prefix = "<<";
-                    postfix = ">>";
+                    prefix = " ";
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.BackgroundColor = ConsoleColor.Black;
                 }
@@ -49,19 +48,58 @@ namespace SharpMatrixMath
             Console.ResetColor();
         }
 
-        public int Run()
+        private void DisplayOpitionsHorizontally()
+        {
+            Console.WriteLine(Prompt);
+            string optionLine = "";
+            for (int i = 0;i < Options.Length;i++)
+            {
+                string prefix = "";
+
+                if (SelectedIndex == i)
+                {
+                    prefix = "*";
+                }
+                
+                optionLine += prefix + Options[i].ToString() + prefix
+                    + " ";
+            }
+            Console.WriteLine(optionLine);
+            Console.ResetColor();
+        }
+
+        private void DisplayOptions(int flag)
+        {
+            if (flag == 1) DisplayOptionsVertically();
+            else DisplayOpitionsHorizontally();
+        }
+        public int Run(int flag)
         {
             ConsoleKey keyPressed;
             do
             {
                 Console.Clear();
-                DisplayOptions();
+                DisplayOptions(flag);
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
                 keyPressed = keyInfo.Key;
 
+                ConsoleKey upSelect, downSelect;
+
+                if (flag == 1)
+                {
+                    upSelect = ConsoleKey.UpArrow;
+                    downSelect = ConsoleKey.DownArrow;
+                }
+                else
+                {
+                    upSelect= ConsoleKey.LeftArrow;
+                    downSelect= ConsoleKey.RightArrow;
+                }
+                
+
                 //Update selectedIndex
-                if (keyPressed == ConsoleKey.UpArrow) SelectedIndex--;
-                else if (keyPressed == ConsoleKey.DownArrow
+                if (keyPressed == upSelect) SelectedIndex--;
+                else if (keyPressed == downSelect
                     || keyPressed == ConsoleKey.Tab) SelectedIndex++;
 
                 if (SelectedIndex < 0) SelectedIndex = Options.Length - 1;
