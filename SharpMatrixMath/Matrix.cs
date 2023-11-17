@@ -19,5 +19,16 @@ namespace SharpMatrixMath
             columns = m;
             Table = new float[rows, columns];
         }
+
+        private void ZeroMatrix()
+        {
+            for (int i = 0; i < columns; i++)
+            {
+                for (int j = 0; j < rows; j++)
+                {
+                    Table[i, j] = 0;
+                }
+            }
+        }
     }
 }
